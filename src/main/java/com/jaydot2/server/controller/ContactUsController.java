@@ -2,10 +2,14 @@ package com.jaydot2.server.controller;
 
 import com.jaydot2.server.dao.DAOMongoDBImpl;
 import com.jaydot2.server.model.ContactMessage;
+import com.jaydot2.server.model.User;
+import com.jaydot2.server.service.UserService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -21,6 +25,9 @@ import java.util.Map;
 public class ContactUsController {
 
     private static final Logger LOG = LogManager.getLogger(ContactUsController.class);
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private DAOMongoDBImpl dao;
@@ -58,9 +65,12 @@ public class ContactUsController {
      */
     @CrossOrigin
     @RequestMapping( value = "/user", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE )
-    public boolean createUser() {
-        boolean result = false;
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        LOG.debug("calling service to create a new user...");
+        if(user != null) {
+            this.userService.createUser(user);
+        }
 
-        return result;
+        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 }
