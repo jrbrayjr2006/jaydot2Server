@@ -7,7 +7,7 @@ This project provides the back-end services for the Jaydot2 website and acts as 
 Use the following command to build the application:
 
 ```aidl
-mvn clean install
+./gradlew clean build
 ```
 
 ## Running the Application
@@ -15,7 +15,7 @@ mvn clean install
 To run the application in development mode use:
 
 ```aidl
-mvn spring-boot:run
+./gradlew bootRun
 ```
 Sample data can be submitted as a POST to the `/user` endpoint:
 
