@@ -10,6 +10,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -17,10 +20,12 @@ class ContactUsControllerTest {
 
     MockMvc mockMvc;
     ContactUsController controller;
+    private UserService mockUserService;
 
     @BeforeEach
     void setUp() {
-        controller = new ContactUsController();
+        mockUserService = mock(UserService.class);
+        controller = new ContactUsController(mockUserService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
@@ -45,9 +50,11 @@ class ContactUsControllerTest {
         User user = User.builder().id(0).fullName("John Doe").email("johndoe@somemail.com").build();
 
         // When
-        controller.createUser(user);
+        when(mockUserService.insert(user)).thenReturn(user);
+        User actualUser = controller.createUser(user);
 
         // Then
+        assertThat(actualUser.getFullName()).isEqualTo(user.getFullName());
     }
 
 }

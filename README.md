@@ -15,6 +15,8 @@ Use the following command to build the application:
 To run the application in development mode use:
 
 ```aidl
+docker-compose
+
 ./gradlew bootRun
 ```
 Sample data can be submitted as a POST to the `/user` endpoint:
