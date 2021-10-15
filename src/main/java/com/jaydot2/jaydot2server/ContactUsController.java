@@ -16,6 +16,6 @@ public class ContactUsController {
     @PostMapping("/user")
     public User createUser(@RequestBody User user) {
 
-        return userService.insert(user);
+        return userService.save(user);
     }
 }

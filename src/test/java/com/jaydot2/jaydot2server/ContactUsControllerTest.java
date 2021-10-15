@@ -50,7 +50,7 @@ class ContactUsControllerTest {
         User user = User.builder().id(0).fullName("John Doe").email("johndoe@somemail.com").build();
 
         // When
-        when(mockUserService.insert(user)).thenReturn(user);
+        when(mockUserService.save(user)).thenReturn(user);
         User actualUser = controller.createUser(user);
 
         // Then
