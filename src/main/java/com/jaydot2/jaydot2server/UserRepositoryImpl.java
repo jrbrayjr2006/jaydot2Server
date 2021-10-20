@@ -11,6 +11,8 @@ public class UserRepositoryImpl implements UserRepository{
 
     @Override
     public User save(User user) {
+        Integer id = Integer.valueOf(-1);
+        users.put(id, user);
         return null;
     }
 
@@ -23,4 +25,6 @@ public class UserRepositoryImpl implements UserRepository{
     public Iterable findAll() {
         return null;
     }
+
+    
 }
