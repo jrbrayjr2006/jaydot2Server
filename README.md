@@ -34,3 +34,17 @@ Here is the sample data for using in a tool like PostMan:
   "email": "jdoe@somemail.com"
 }
 ```
+
+## Testing
+
+### Run SonarQube for code quality
+
+```agsl
+gradlew sonarqube -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqa_248e8df52bcdd6e8240998e8fb71c45a9f0aff0c
+
+gradlew sonar -Dsonar.login=squ_995c80608f7064748ee6d6b69d63330529abc546
+
+./gradlew sonar -Dsonar.login=
+
+./gradlew sonar -Dsonar.projectKey=Jaydot2-server -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_fa00feae610f1d535d4e4f9feccb4724f54be632
+```
